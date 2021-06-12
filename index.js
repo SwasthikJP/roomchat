@@ -14,9 +14,10 @@ io.on("connection",(socket)=>{
   socket.on("sendchat",async(arg,calback)=>{
 console.log(arg)
 try{
-socket.to(arg.room).emit("broadchats",{...arg,time:date.format(new Date(),'hh:mm A')})  //send chats to a room
+  var t=date.format(new Date(),'h:mm A');
+socket.to(arg.room).emit("broadchats",{...arg,time:t})  //send chats to a room
 
-calback({status:"ok"})
+calback({status:"ok",time:t})
   }
 
 catch(er){
