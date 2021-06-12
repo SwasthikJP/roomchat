@@ -26,7 +26,7 @@ if(res.status=="ok"){
 }
 
 socket.on("broadchats",(res)=>{  //recieve chats from current room
-    console.log(res)
+   
     totalchat.innerHTML=totalchat.innerHTML+` <div class="chatbox">
     <p class="username2">${res.username}</p>
         <p class="chat" >${res.ms} </p>
@@ -73,7 +73,7 @@ roomselect.addEventListener("change",()=>{
     joinrooms();
 })
 
-console.log(msform)
+
 msform.addEventListener("submit",msend);
 
 
