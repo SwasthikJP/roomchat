@@ -12,7 +12,7 @@ app.use(express.static("public"));
 io.on("connection",(socket)=>{
 
   socket.on("sendchat",async(arg,calback)=>{
-console.log(arg)
+
 try{
   var t=date.format(new Date(),'h:mm A');
 socket.to(arg.room).emit("broadchats",{...arg,time:t})  //send chats to a room
