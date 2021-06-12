@@ -66,7 +66,7 @@ totalchat.lastChild.scrollIntoView();
 
 window.addEventListener("load",(e)=>{
 username.value="user"+Math.floor(Math.random()*100+1);  //set default username
-joinrooms();   
+joinrooms();
 }) 
 
 roomselect.addEventListener("change",()=>{
