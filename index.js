@@ -8,13 +8,13 @@ const io=require("socket.io")(httpServer);
 const PORT=process.env.PORT || 8080;
 
 app.use(express.static("public"));
-
 io.on("connection",(socket)=>{
 
   socket.on("sendchat",async(arg,calback)=>{
 
 try{
-  var t=date.format(new Date(),'h:mm A');
+
+  var t=new Date().toUTCString();   //getting UTC time
 socket.to(arg.room).emit("broadchats",{...arg,time:t})  //send chats to a room
 
 calback({status:"ok",time:t})

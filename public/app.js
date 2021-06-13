@@ -4,7 +4,6 @@ const username=document.querySelector(".setusername");
 const roomselect=document.getElementById("roomselect");
 const msform=document.querySelector(".sendmessage");
 const totalchat=document.querySelector(".totalchat");
-const btmdiv=totalchat.querySelector(".btmdiv");
 
 
 socket.on("connect",()=>{      
@@ -25,12 +24,16 @@ if(res.status=="ok"){
 
 }
 
+function localtime(utctime){ //convert UTC time to local time
+    return  date.format(new Date(utctime),"h:mm A");
+}
+
 socket.on("broadchats",(res)=>{  //recieve chats from current room
-   
+
     totalchat.innerHTML=totalchat.innerHTML+` <div class="chatbox">
     <p class="username2">${res.username}</p>
         <p class="chat" >${res.ms} </p>
-    <p class="time">${res.time}</p>
+    <p class="time">${localtime(res.time)}</p>
     </div>`;
     totalchat.lastChild.scrollIntoView();
 })
@@ -49,11 +52,10 @@ function msend(e){
     }
     socket.emit("sendchat",js,(res)=>{  //send chat to current room
         if(res.status=="ok"){
-            
             totalchat.innerHTML=totalchat.innerHTML+` <div class="chatbox chatbox2">
 <p class="username2">${js.username}</p>
     <p class="chat" >${js.ms} </p>
-<p class="time">${res.time}</p>
+<p class="time">${localtime(res.time)}</p>
 </div>`;
 totalchat.lastChild.scrollIntoView();
         }else{
