@@ -43,7 +43,11 @@ socket.on("broadchats",(res)=>{  //recieve chats from current room
 function msend(e){   
     e.preventDefault();
     var v=this.querySelector(`[name=typechat]`).value;
+    var regex = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/g;
     if(v.trim().length!=0){
+     
+            // console.log(regex.test(username.value))
+            if(regex.test(username.value)){
     this.reset();
     var js={
         username:username.value,
@@ -62,12 +66,15 @@ totalchat.lastChild.scrollIntoView();
             window.alert(res.status)
         }
     })
+    }else{
+        window.alert("username should not contain special characters")
     }
+}
 }
 
 
 window.addEventListener("load",(e)=>{
-username.value="user"+Math.floor(Math.random()*100+1);  //set default username
+username.value="user"+Math.floor(Math.random()*100+1); //set default username
 joinrooms();
 }) 
 
